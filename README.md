@@ -41,7 +41,7 @@ This code is provided in the examples directory. Make sure to run `go generate` 
 ```go
 package main
 
-//go:generate simpleassets -a "./*js" -o assets.go
+//go:generate simpleassets -o assets.go ./*js
 import "fmt"
 
 func main() {
@@ -54,6 +54,7 @@ func main() {
 	fmt.Println(string(base64))
 
 	// Write temporary data into asset storage.
-	WriteAsset("1990s.txt", []byte("All your base are belong to us"))
+	WriteAsset("1990s.txt", []byte("All ur base are belong to us"))
 }
+
 ```
