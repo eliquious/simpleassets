@@ -13,7 +13,7 @@ go get github.com/eliquious/simpleassets
 #### Dependencies
 
 ```
-github.com/spf13/pflag
+go get -u github.com/spf13/pflag
 ```
 
 ## Usage
