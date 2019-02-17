@@ -190,6 +190,7 @@ import (
 
 // Asset stores the file data.
 type Asset struct {
+	Name 	   string
 	Compressed bool
 	Data       string
 }
@@ -226,11 +227,28 @@ func ReadAsset(name string) ([]byte, error) {
 // WriteAsset writes an asset to the store.
 func WriteAsset(name string, data []byte) {
 	encoded := base64.StdEncoding.EncodeToString([]byte(data))
-	assets[name] = Asset{Compressed: false, Data: encoded}
+
+	// Add to list of asset names if needed
+	if _, ok := assets[name]; !ok {
+		assetNames = append(assetNames, name)
+	}
+
+	// Store assset
+	assets[name] = Asset{Name: name, Compressed: false, Data: encoded}
 }{{end}}
 
+// List of asset names
+var assetNames = []string{ {{ range $index, $element := .Assets}}
+	"{{$element.Name}}",{{end}}
+}
+
+// ListAssetNames returns the list of asset names
+func ListAssetNames() []string {
+	return assetNames
+}
+
 func init() { {{ range $index, $element := .Assets}}
-	assets["{{$element.Name}}"] = Asset{ Compressed: true, Data: {{$element.AssetID}}} {{end}}
+	assets["{{$element.Name}}"] = Asset{ Name: "{{$element.Name}}", Compressed: true, Data: {{$element.AssetID}}} {{end}}
 }
 {{ range $index, $element := .Assets}}
 var {{$element.AssetID}} = strings.Join([]string{ {{ range $partindex, $part := $element.FileParts }}
