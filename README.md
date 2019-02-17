@@ -10,6 +10,12 @@ Files are added via glob patterns. Multiple patterns are supported. The addition
 go get github.com/eliquious/simpleassets
 ```
 
+#### Dependencies
+
+```
+github.com/spf13/pflag
+```
+
 ## Usage
 
 ```
