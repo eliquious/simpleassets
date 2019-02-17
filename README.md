@@ -60,7 +60,7 @@ func main() {
 	fmt.Println(string(base64))
 
 	// Write temporary data into asset storage.
-	WriteAsset("1990s.txt", []byte("All ur base are belong to us"))
+	WriteAsset("1990s.txt", []byte("All your base are belong to us"))
 }
 
 ```
