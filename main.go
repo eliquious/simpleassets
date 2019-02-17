@@ -131,6 +131,9 @@ func readAssets(logger *log.Logger, files []string) []Asset {
 			index++
 		}
 	}
+	if index == 0 {
+		logger.Fatal("no assets found")
+	}
 	return fileparts
 }
 
