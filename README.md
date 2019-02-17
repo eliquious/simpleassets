@@ -1,4 +1,4 @@
-<div align="center"><p style="margin-top: 0px; font-size: 48px; font-weight: 100; margin-bottom: auto;">simpleassets</p></div>
+<div align="center"><span style="margin-top: 0px; font-size: 48px; font-weight: 100; margin-bottom: auto;">simpleassets</span></div>
 <p align="center"><img src="icon.png" width="180"></p>
 
 This is a dead simple code generator for static assets. It reads, compresses and encodes files into Go for runtime access. The files are encoded with base64 and stored in a map. The files are decoded and decompressed when accessed. Additional assets can be added during runtime but are only encoded, not compressed.
