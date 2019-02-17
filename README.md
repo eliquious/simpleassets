@@ -12,6 +12,14 @@ go get github.com/eliquious/simpleassets
 
 #### Dependencies
 
+## Features
+
+- Multiple glob patterns
+- Single output
+- Gzip compression
+- Supports runtime additions
+- Trim file prefix
+
 ```
 go get -u github.com/spf13/pflag
 ```
@@ -26,14 +34,6 @@ Usage of simpleassets:
   -p, --package string   Package name (default "main")
   -t, --trim string      Trim file prefix
 ```
-
-### Features
-
-- Multiple glob patterns
-- Single output
-- Gzip compression
-- Supports runtime additions
-- Trim file prefix
 
 ## Example
 
