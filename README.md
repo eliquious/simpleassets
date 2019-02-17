@@ -12,6 +12,10 @@ go get github.com/eliquious/simpleassets
 
 #### Dependencies
 
+```
+go get -u github.com/spf13/pflag
+```
+
 ## Features
 
 - Multiple glob patterns
@@ -19,10 +23,6 @@ go get github.com/eliquious/simpleassets
 - Gzip compression
 - Supports runtime additions
 - Trim file prefix
-
-```
-go get -u github.com/spf13/pflag
-```
 
 ## Usage
 
