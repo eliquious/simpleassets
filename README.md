@@ -27,9 +27,8 @@ go get -u github.com/spf13/pflag
 ## Usage
 
 ```
-Usage of simpleassets:
-  -a, --assets strings   Asset glob(s)
-      --omit-write       Omit the WriteAsset generated function
+Usage: simpleassets [flags] ASSETS [ASSETS ...] 
+      --omit-write       Disable write access (not generated)
   -o, --output string    Output file (default "assets.go")
   -p, --package string   Package name (default "main")
   -t, --trim string      Trim file prefix
