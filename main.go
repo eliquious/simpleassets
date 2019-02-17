@@ -13,7 +13,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/alecthomas/template"
+	"text/template"
+
 	flag "github.com/spf13/pflag"
 )
 
@@ -21,17 +22,27 @@ var (
 	pkg       = flag.StringP("package", "p", "main", "Package name")
 	output    = flag.StringP("output", "o", "assets.go", "Output file")
 	prefix    = flag.StringP("trim", "t", "", "Trim file prefix")
-	assets    = flag.StringSliceP("assets", "a", nil, "Asset glob(s)")
-	omitWrite = flag.Bool("omit-write", false, "Omit the WriteAsset generated function")
+	omitWrite = flag.Bool("omit-write", false, "Disable write access (not generated)")
 )
 
 func main() {
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "Usage: %s [flags] ASSETS [ASSETS ...] \n", os.Args[0])
+		flag.PrintDefaults()
+	}
+	flag.ErrHelp = fmt.Errorf("")
 	flag.Parse()
+	assets := flag.Args()
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime|log.Lmicroseconds)
 
 	// Check output file
 	if *output == "" {
 		log.Fatal("invalid output file")
+	}
+
+	// Check for assets
+	if len(assets) == 0 {
+		log.Fatal("no assets provided")
 	}
 
 	// Create new template and parse
@@ -45,7 +56,7 @@ func main() {
 	// Execute template
 	content := Content{
 		PackageName: *pkg,
-		Assets:      readAssets(logger, *assets),
+		Assets:      readAssets(logger, assets),
 		OmitWrite:   *omitWrite,
 	}
 
