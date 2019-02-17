@@ -1,6 +1,5 @@
 package main
 
-///go:generate simpleassets -a "./*js" -o assets.go ./*js
 //go:generate simpleassets -o assets.go ./*js
 import "fmt"
 
