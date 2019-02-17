@@ -8,5 +8,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(base64)
+	fmt.Println(string(base64))
 }

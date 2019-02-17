@@ -54,7 +54,7 @@ func main() {
 	if err := tmpl.Execute(&buf, content); err != nil {
 		log.Fatal(err)
 	}
-	log.Println(len(buf.Bytes()))
+	log.Println(fmt.Sprintf("Preformatted file size: %d", buf.Len()))
 
 	// Open output file
 	fh, err := os.Create(*output)
@@ -192,23 +192,21 @@ func ReadAsset(name string) ([]byte, error) {
 		return nil, fmt.Errorf("asset does not exist: %s", name)
 	}
 
+	// Decode base64
+	decoded, err := base64.StdEncoding.DecodeString(asset.Data)
+	if err != nil {
+		return nil, err
+	}
+
 	// Decompress if required
 	if asset.Compressed {
-
-		// Decode base64
-		decoded, err := base64.StdEncoding.DecodeString(asset.Data)
-		if err != nil {
-			return nil, err
-		}
-
-		// Decompress
 		reader, err := gzip.NewReader(bytes.NewReader(decoded))
 		if err != nil {
 			return nil, err
 		}
 		return ioutil.ReadAll(reader)
 	}
-	return base64.StdEncoding.DecodeString(asset.Data)
+	return decoded, nil
 }
 {{ if not .OmitWrite}}
 // WriteAsset writes an asset to the store.
