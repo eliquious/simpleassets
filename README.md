@@ -2,7 +2,13 @@
 
 This is a dead simple code generator for static assets. It reads, compresses and encodes files into Go for runtime access. The files are encoded with base64 and stored in a map. The files are decoded and decompressed when accessed. Additional assets can be added during runtime but are only encoded, not compressed.
 
-Files are added via glob patterns. Multiple patterns are supported. The additional write functionality can be disabled during the generation. Output is a single Go file that has beem formatted with `gofmt`.
+Files are added via glob patterns. Multiple patterns are supported. The additional write functionality can be disabled during generation. Output is a single Go file that is formatted with `gofmt`.
+
+### Yet another... Why?!
+
+Simply put, all the libraries I found were either too much or not enough. Many of the libraries out there are built for http servers or they don't have a way to write files to the memory store at run time. So `simpleasssets` is not built for serving assets and allows you to store new assets at runtime.
+
+Everything I need and nothing I don't. It's a no-frills, just-load-the-damn-files type of tool. If that's what your looking for, awesome. Otherwise the larger, friller, non-sensical, swiss-army-knife serving tools might suit you better.
 
 ## Install
 
